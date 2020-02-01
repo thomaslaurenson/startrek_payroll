@@ -1,0 +1,72 @@
+# Author:  Thomas Laurenson
+# Email:   thomas@thomaslaurenson.com
+# Website: https://www.thomaslaurenson.com
+#
+# Description:
+# Docker compose for the StarTrek Payroll Web Application
+#
+# Copyright (c) 2020, Thomas Laurenson
+# 
+###############################################################################
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+###############################################################################
+version: '3'
+services:
+  nginx:
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+    image: alpine:latest
+    container_name: startrek_payroll_nginx
+    depends_on:
+      - mysql
+      - php
+    ports:
+      - "80:80"
+    volumes:
+      - ./app:/app
+      - ./nginx/site.conf:/etc/nginx/conf.d/site.conf
+    networks:
+      - frontend
+      - backend
+
+  mysql:
+    image: mysql:5.5
+    container_name: startrek_payroll_mysql
+    restart: unless-stopped
+    environment:
+      - MYSQL_HOST=localhost
+      - MYSQL_ROOT_PASSWORD=sploitme
+      - MYSQL_DATABASE=payroll
+      - MYSQL_PORT=3306
+    volumes:
+      - ./mysql/startrek_payroll.sql:/docker-entrypoint-initdb.d/startrek_payroll.sql
+    networks:
+      - backend
+
+  php:
+    build:
+      context: php
+      dockerfile: Dockerfile
+    image: php:fpm
+    container_name: startrek_payroll_php
+    restart: unless-stopped
+    volumes:
+      - ./app:/app
+    networks:
+      - backend
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
