@@ -1,5 +1,5 @@
 <?php
-$host = "payroll_app_mysql";
+$host = "startrek_payroll_mysql";
 $db_name = "payroll";
 $db_username = "root";
 $db_password = "sploitme";

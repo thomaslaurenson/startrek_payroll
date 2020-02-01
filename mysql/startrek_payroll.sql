@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`username`, `first_name`, `last_name`, `password`, `salary`) VALUES
-('james_kirk','James','Kirk','kobayashi','25000'),
+('james_kirk','James','Kirk','kobayashi_maru','25000'),
 ('mr_spock','Mr','Spock','0nlyL0g!c','99000'),
 ('leonard_mccoy','Leonard','McCoy','hesDEADjim!','45000'),
 ('nyota_uhura','Nyota','Uhura','StarShine','39000'),
