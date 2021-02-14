@@ -44,7 +44,7 @@ if (!isset($_POST['s'])) {
 ?>
 
 <?php
-if($_POST['s']){
+if($_POST){
     $user = $_POST['user'];
     error_log("USERNAME:" . $user);
     $pass = $_POST['password'];
