@@ -19,7 +19,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ###############################################################################
-FROM php:fpm
+FROM php:8.0-fpm
 LABEL MAINTAINER="Thomas Laurenson <thomas@thomaslaurenson.com>"
 
 # Install MSQLi

@@ -12,39 +12,39 @@ $options = [
     PDO::ATTR_EMULATE_PREPARES   => false,
 ];
 try {
-     $pdo = new PDO($dsn, $db_username, $db_password, $options);
+    $pdo = new PDO($dsn, $db_username, $db_password, $options);
 } catch (\PDOException $e) {
-     throw new \PDOException($e->getMessage(), (int)$e->getCode());
+    throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
 ?>
 
 <?php
 if (!isset($_POST['s'])) {
 ?>
-<center>
-<form action="" method="post">
-<h2>Payroll Login</h2>
-<table style="border-radius: 25px; border: 2px solid black; padding: 20px;">
-    <tr>
-        <td>User</td>
-        <td><input type="text" name="user"></td>
-    </tr>
-    <tr>
-        <td>Password</td>
-        <td><input type="password" name="password"></td>
-    </tr>
-    <tr>
-       <td><input type="submit" value="OK" name="s">
-    </tr>
-</table>
-</form>
-</center>
+    <center>
+        <form action="" method="post">
+            <h2>Payroll Login</h2>
+            <table style="border-radius: 25px; border: 2px solid black; padding: 20px;">
+                <tr>
+                    <td>User</td>
+                    <td><input type="text" name="user"></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="OK" name="s">
+                </tr>
+            </table>
+        </form>
+    </center>
 <?php
 }
 ?>
 
 <?php
-if($_POST){
+if ($_POST) {
     $user = $_POST['user'];
     error_log("USERNAME:" . $user);
     $pass = $_POST['password'];
@@ -57,10 +57,8 @@ if($_POST){
         echo "<table style='border-radius: 25px; border: 2px solid black;' cellspacing=30>";
         echo "<tr><th>Username</th><th>Salary</th></tr>";
         if ($keys = $stmt->fetch()) {
-            error_log("KEYS:" . $keys);
             echo "<tr>";
             foreach ($keys as $key) {
-                error_log("key:" . $key);
                 echo "<td>" . $key . "</td>";
             }
             echo "</tr>\n";

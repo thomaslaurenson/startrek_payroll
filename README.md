@@ -24,4 +24,4 @@ Clean the Docker environment (after making changes):
 
 Open web browser and visit:
 
-- `127.0.0.1`
+- `localhost:8080`

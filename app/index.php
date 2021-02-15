@@ -13,30 +13,30 @@ if ($conn->connect_error) {
 <?php
 if (!isset($_POST['s'])) {
 ?>
-<center>
-<form action="" method="post">
-<h2>Payroll Login</h2>
-<table style="border-radius: 25px; border: 2px solid black; padding: 20px;">
-    <tr>
-        <td>User</td>
-        <td><input type="text" name="user"></td>
-    </tr>
-    <tr>
-        <td>Password</td>
-        <td><input type="password" name="password"></td>
-    </tr>
-    <tr>
-       <td><input type="submit" value="OK" name="s">
-    </tr>
-</table>
-</form>
-</center>
+    <center>
+        <form action="" method="post">
+            <h2>Payroll Login</h2>
+            <table style="border-radius: 25px; border: 2px solid black; padding: 20px;">
+                <tr>
+                    <td>User</td>
+                    <td><input type="text" name="user"></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="OK" name="s">
+                </tr>
+            </table>
+        </form>
+    </center>
 <?php
 }
 ?>
 
 <?php
-if($_POST){
+if ($_POST) {
     $user = $_POST['user'];
     error_log("USERNAME:" . $user);
     $pass = $_POST['password'];
