@@ -26,10 +26,11 @@ services:
     container_name: startrek_payroll_mysql
     restart: unless-stopped
     environment:
-      - MYSQL_HOST=localhost
-      - MYSQL_ROOT_PASSWORD=sploitme
-      - MYSQL_DATABASE=payroll
-      - MYSQL_PORT=3306
+      - MYSQL_PORT=${MYSQL_PORT}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
     volumes:
       - ./mysql/startrek_payroll.sql:/docker-entrypoint-initdb.d/startrek_payroll.sql
     networks:
@@ -44,6 +45,11 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - mysql
+    environment:
+      - MYSQL_PORT=${MYSQL_PORT}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
     volumes:
       - ./app:/app
     networks:

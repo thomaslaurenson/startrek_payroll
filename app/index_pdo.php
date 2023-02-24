@@ -1,8 +1,8 @@
 <?php
 $host = "startrek_payroll_mysql";
-$db_name = "payroll";
-$db_username = "root";
-$db_password = "sploitme";
+$db_name = $_SERVER["MYSQL_DATABASE"];
+$db_username = $_SERVER["MYSQL_USER"];
+$db_password = $_SERVER["MYSQL_PASSWORD"];
 $charset = "utf8mb4";
 
 $dsn = "mysql:host=$host;dbname=$db_name;charset=$charset";

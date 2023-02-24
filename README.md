@@ -11,17 +11,17 @@ This is a simple web application that is vulnerable to SQL injection attacks. Th
 Install the project requirements on your choice of operating system, including:
 
 - Docker
-- Docker Compose
+- Docker Compose plugin
 
 Run using either of the following:
 
-- `docker-compose up --build`
-- `./run.sh` (only on Bash)
-
-Clean the Docker environment (after making changes):
-
-- `./clean.sh` (only on Bash)
+- `docker compose up --build`
+- `make run`
 
 Open web browser and visit:
 
 - `localhost:8080`
+
+Clean the Docker environment (after making changes):
+
+- `.make clean`
