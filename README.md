@@ -24,4 +24,4 @@ Open web browser and visit:
 
 Clean the Docker environment (after making changes):
 
-- `.make clean`
+- `make clean`
