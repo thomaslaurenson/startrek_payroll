@@ -7,3 +7,29 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 0  # only security updates
+    assignees:
+      - "thomaslaurenson"
+
+  - package-ecosystem: docker
+    directory: /mysql
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 0  # only security updates
+    assignees:
+      - "thomaslaurenson"
+
+  - package-ecosystem: docker
+    directory: /nginx
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 0  # only security updates
+    assignees:
+      - "thomaslaurenson"
+
+  - package-ecosystem: docker
+    directory: /php
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 0  # only security updates
+    assignees:
+      - "thomaslaurenson"
