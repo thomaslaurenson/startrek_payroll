@@ -5,52 +5,82 @@ $db_username = $_SERVER["MYSQL_USER"];
 $db_password = $_SERVER["MYSQL_PASSWORD"];
 
 $conn = new mysqli($host, $db_username, $db_password, $db_name);
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-?>
 
-<?php
 if (!isset($_POST['s'])) {
-?>
-    <center>
-        <form action="" method="post">
-            <h2>Payroll Login</h2>
-            <table style="border-radius: 25px; border: 2px solid black; padding: 20px;">
-                <tr>
-                    <td>User</td>
-                    <td><input type="text" name="user"></td>
-                </tr>
-                <tr>
-                    <td>Password</td>
-                    <td><input type="password" name="password"></td>
-                </tr>
-                <tr>
-                    <td><input type="submit" value="OK" name="s">
-                </tr>
-            </table>
-        </form>
-    </center>
-<?php
-}
-?>
+    ?>
+    <!DOCTYPE html>
+    <html lang="en">
 
-<?php
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Payroll Login</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+            body {
+                background-color: #f8f9fa;
+                padding-top: 50px;
+            }
+
+            form {
+                max-width: 400px;
+                margin: 0 auto;
+                padding: 15px;
+                background-color: #ffffff;
+                border: 1px solid #dee2e6;
+                border-radius: 5px;
+                margin-top: 50px;
+            }
+
+            h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <form action="" method="post">
+                <h2>Payroll Login</h2>
+                <div class="form-group">
+                    <label for="user">User:</label>
+                    <input type="text" class="form-control" name="user" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" name="s">OK</button>
+            </form>
+        </div>
+    </body>
+
+    </html>
+
+    <?php
+}
+
 if ($_POST) {
     $user = $_POST['user'];
     error_log("USERNAME:" . $user);
     $pass = $_POST['password'];
     error_log("PASSWORD:" . $pass);
-    $sql = "select username, salary from users where username = '$user' and password = '$pass'";
+
+    $sql = "SELECT username, salary FROM users WHERE username = '$user' AND password = '$pass'";
     error_log("QUERY:" . $sql);
 
     if ($conn->multi_query($sql)) {
         do {
-            /* store first result set */
-            echo "<center>";
-            echo "<h2>Welcome, " . $user . "</h2><br>";
-            echo "<table style='border-radius: 25px; border: 2px solid black;' cellspacing=30>";
-            echo "<tr><th>Username</th><th>Salary</th></tr>";
+            echo "<div class='container'>";
+            echo "<h2 class='text-center'>Welcome, " . $user . "</h2><br>";
+            echo "<table class='table table-bordered'>";
+            echo "<thead class='thead-light'><tr><th>Username</th><th>Salary</th></tr></thead><tbody>";
+
             if ($result = $conn->store_result()) {
                 while ($row = $result->fetch_assoc()) {
                     $keys = array_keys($row);
@@ -62,10 +92,13 @@ if ($_POST) {
                 }
                 $result->free();
             }
+
             if (!$conn->more_results()) {
-                echo "</table></center>";
+                echo "</tbody></table></div>";
             }
+
         } while ($conn->next_result());
     }
 }
 ?>
+
