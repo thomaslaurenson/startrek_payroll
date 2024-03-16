@@ -1,4 +1,4 @@
-FROM php:8.0-fpm
+FROM php:8.3.2-fpm-alpine3.19
 
 # Install MSQLi
 RUN docker-php-ext-install mysqli
